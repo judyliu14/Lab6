@@ -16,25 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
    * the current entry for each journal-entry element.
    */
 
-  let url = ""  // SET URL 
+  let url = "https://cse110lab6.herokuapp.com/entries"  // SET URL 
 
   fetch(url)
-    .then( /* FILL IN RESPONSE HANDLING HERE */ )
+    .then(response => response.json())
     .then(entries => {
       entries.forEach((entry) => {
-       
-        let newPost;  
 
+        let newPost;
 
         // CODE GOES HERE vvv
-        
-
-
-
-
-
-
-
+        newPost = document.createElement('journal-entry');
+        document.querySelector('main').appendChild(newPost);
+        newPost.entry = entry;
         // CODE GOES HERE ^^^
 
 
@@ -42,17 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
         /* ------------- do not edit this code, it is for your debugging purposes ------------- */
         try {
           window.logCheckpoint('"newPost"', exampleNewPost, newPost);
-        } catch(err) {
+        } catch (err) {
           console.log('variable name changed: ', err);
         }
         /* ------------- do not edit this code, it is for your debugging purposes ------------- */
+      })
+      logCheckpoints();
     })
-    logCheckpoints();
-  })
-  .catch(error => {
-    console.log(`%cresult of fetch is an error: \n"${error}"`, 'color: red');
-  });    
-   
+    .catch(error => {
+      console.log(`%cresult of fetch is an error: \n"${error}"`, 'color: red');
+    });
+
 });
 
 
